@@ -1,0 +1,21 @@
+.reels {
+    // Add any specific styles for the reels container here
+  }
+  
+  .window {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .reel {
+    position: absolute;
+    transition: all 1s ease;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  

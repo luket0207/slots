@@ -1,0 +1,29 @@
+/* Buttons.scss */
+.buttons {
+    button {
+        width: 160px;
+        height: 60px;
+        background-image: url('../Assets/Images/Sign.png');
+        background-size: cover;
+        background-position: center;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transform: scale(1);
+        opacity: 1;
+        transition: all .3s ease;
+        font-family: "Luckiest Guy", cursive;
+        font-weight: 400;
+        font-style: normal;
+        color: #FDD017;
+        font-size: 32px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:disabled {
+            opacity: 0.8;
+        }
+    }
+}
