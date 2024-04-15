@@ -1,26 +1,26 @@
 // Reels.js
 import React from 'react';
 import './Reels.scss';
-
+import Wumpa from './Wumpa/Wumpa';
 
 
 const Reels = ({ onSpin, reelOnePosition, reelTwoPosition, reelThreePosition, Reel }) => {
-  const circleSize = 130;
+  const symbolSize = 200;
   const marginSize = 10;
  
   const calcTop = (pos) => {
-    const newPos = pos * (circleSize + marginSize) - ((pos * (circleSize + marginSize)) * 2);
+    const newPos = pos * (symbolSize + marginSize) - ((pos * (symbolSize + marginSize)) * 2);
     return newPos
   }
 
   const windowStyles = {
-    width: `${(circleSize * 3 ) + (marginSize * 4)}px`,
-    height: `${circleSize + (marginSize * 2)}px`,
+    width: `${(symbolSize * 3 ) + (marginSize * 4)}px`,
+    height: `${symbolSize + (marginSize * 2)}px`,
   };
 
-  const circleStyles = {
-    width: `${circleSize}px`,
-    height: `${circleSize}px`,
+  const symbolStyles = {
+    width: `${symbolSize}px`,
+    height: `${symbolSize}px`,
     margin: `${marginSize}px`,
   };  
 
@@ -29,32 +29,29 @@ const Reels = ({ onSpin, reelOnePosition, reelTwoPosition, reelThreePosition, Re
         <div className="window" style={{ ...windowStyles }}>
             <div className='reel reelOne' style={{top: `${calcTop(reelOnePosition)}px`}}>
                 {Reel.map((symbol, index) => (
-                  <div key={index} className="reel-item" style={{ ...circleStyles }}>
+                  <div key={index} className="reel-item" style={{ ...symbolStyles }}>
                     <img alt={symbol.name} src={symbol.image} />
-                    <p>{symbol.wumpa}</p>
+                    <Wumpa amount={symbol.wumpa} />
                   </div>
                 ))}
             </div>
-            <div className='reel reelTwo' style={{left: `${circleSize + marginSize}px`, top: `${calcTop(reelTwoPosition)}px`}}>
+            <div className='reel reelTwo' style={{left: `${symbolSize + marginSize}px`, top: `${calcTop(reelTwoPosition)}px`}}>
                 {Reel.map((symbol, index) => (              
-                  <div key={index} className="reel-item" style={{ ...circleStyles }}>
+                  <div key={index} className="reel-item" style={{ ...symbolStyles }}>
                     <img alt={symbol.name} src={symbol.image} />
-                    <p>{symbol.wumpa}</p>
+                    <Wumpa amount={symbol.wumpa} />
                   </div>
                 ))}
             </div>
-            <div className='reel reelThree' style={{left: `${(circleSize + marginSize) * 2}px`, top: `${calcTop(reelThreePosition)}px` }}>
+            <div className='reel reelThree' style={{left: `${(symbolSize + marginSize) * 2}px`, top: `${calcTop(reelThreePosition)}px` }}>
                 {Reel.map((symbol, index) => (
-                  <div key={index} className="reel-item" style={{ ...circleStyles }}>
+                  <div key={index} className="reel-item" style={{ ...symbolStyles }}>
                     <img alt={symbol.name} src={symbol.image} />
-                    <p>{symbol.wumpa}</p>
+                    <Wumpa amount={symbol.wumpa} />
                   </div>
                 ))}
             </div>
         </div>
-        {reelOnePosition},
-        {reelTwoPosition},
-        {reelThreePosition}
     </div>
   );
 };

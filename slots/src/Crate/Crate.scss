@@ -1,0 +1,47 @@
+.crate-container {
+    width: 200px;
+    height: 200px;
+    margin: 80px;
+    perspective: 400px;
+  }
+  
+  .crate {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+    transition: transform 1s;
+  }
+  
+  .crate.show-one  { transform: translateZ(-100px) rotateY(   0deg); }
+  .crate.show-three  { transform: translateZ(-100px) rotateY( -90deg); }
+  .crate.show-two   { transform: translateZ(-100px) rotateY(-180deg); }
+  .crate.show-four   { transform: translateZ(-100px) rotateY(  90deg); }
+  .crate.show-five    { transform: translateZ(-100px) rotateX( -90deg); }
+  .crate.show-six { transform: translateZ(-100px) rotateX(  90deg); }
+  
+  .crate__face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    line-height: 200px;
+    font-size: 40px;
+    font-weight: bold;
+    background-image: url('../Assets/Images/BlankCrate.png');
+    background-size: cover;
+    text-align: center;
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #FDD017;
+    font-size: 100px;
+  }
+  
+  .crate__face--one  { transform: rotateY(  0deg) translateZ(100px); }
+  .crate__face--three  { transform: rotateY( 90deg) translateZ(100px); }
+  .crate__face--two   { transform: rotateY(180deg) translateZ(100px); }
+  .crate__face--four   { transform: rotateY(-90deg) translateZ(100px); }
+  .crate__face--five    { transform: rotateX( 90deg) translateZ(100px); }
+  .crate__face--six { transform: rotateX(-90deg) translateZ(100px); }

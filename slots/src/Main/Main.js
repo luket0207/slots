@@ -4,12 +4,14 @@ import Reels from '../Reels/Reels';
 import * as Win from '../Methods/Win';
 import './Main.scss';
 import { Reel } from '../Assets/Data/Reel';
+import Crate from '../Crate/Crate';
 
 const Main = () => {
 
     const [reelOnePosition, setReelOnePosition] = useState(0);
     const [reelTwoPosition, setReelTwoPosition] = useState(0);
     const [reelThreePosition, setReelThreePosition] = useState(0);
+    const [crateValue, setCrateValue] = useState(0);
     const [result, setResult] = useState([0, 0, 0]);
     const [disableAll, setDisableAll] = useState(false);
     const [wumpaSum, setWumpaSum] = useState(0);
@@ -47,6 +49,8 @@ const Main = () => {
             Win.lose({ setResult, result });
         }
 
+        setCrateValue(Math.floor(Math.random() * 6));
+
         setTimeout(() => {
             setDisableAll(false);
         }, 1000);
@@ -63,6 +67,7 @@ const Main = () => {
                 disableAll={disableAll}
                 Reel={Reel}
             />
+            <Crate value={crateValue}></Crate>
             <div>Wumpa Sum: {wumpaSum}</div>
         </div>
     );
