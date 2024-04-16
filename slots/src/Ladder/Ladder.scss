@@ -1,0 +1,25 @@
+.ladder {
+    display: flex;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    background-image: url('../Assets/Images/Wumpa.png');
+    background-size: cover;
+    opacity: 0;
+    transition-delay: 1s;
+    transition: opacity .5s ease;
+}
+
+.visited {
+    opacity: .3;
+}
+
+.player {
+    opacity: 1;
+}

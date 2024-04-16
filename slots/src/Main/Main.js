@@ -5,9 +5,10 @@ import * as Win from '../Methods/Win';
 import './Main.scss';
 import { Reel } from '../Assets/Data/Reel';
 import Crate from '../Crate/Crate';
+import Ladder from '../Ladder/Ladder';
 
 const Main = () => {
-
+    const [gameStart, setGameStart] = useState(false);
     const [reelOnePosition, setReelOnePosition] = useState(0);
     const [reelTwoPosition, setReelTwoPosition] = useState(0);
     const [reelThreePosition, setReelThreePosition] = useState(0);
@@ -25,22 +26,37 @@ const Main = () => {
     useEffect(() => {
         // Calculate and set the sum of wumpa values when reel positions change
         const calculateWumpaSum = () => {
-            const reelItems = [reelOnePosition, reelTwoPosition, reelThreePosition];
-            const wumpaSum = reelItems.reduce((sum, position, index) => {
-                const reelItem = Reel[position];
-                return sum + reelItem.wumpa;
-            }, 0);
-            setWumpaSum(wumpaSum);
+            if (gameStart) {
+                const reelItems = [reelOnePosition, reelTwoPosition, reelThreePosition];
+                const wumpaSum = reelItems.reduce((sum, position, index) => {
+                    const reelItem = Reel[position];
+                    return sum + reelItem.wumpa;
+                }, 0);
+                setTimeout(() => {
+                    setWumpaSum(wumpaSum);
+                }, 1000);
+                
+            }
         };        
 
         calculateWumpaSum();
     }, [reelOnePosition, reelTwoPosition, reelThreePosition]);
 
+    const handleUpdateCrate = () => {
+        let newCrateValue;
+        do {
+            newCrateValue = Math.floor(Math.random() * 6);
+        } while (newCrateValue === crateValue); 
+        setCrateValue(newCrateValue);
+    }
+
     const handleSpin = () => {
         setDisableAll(true);
+        setGameStart(true);
+        setWumpaSum(0);
         const chance = Math.floor(Math.random() * 1000);
         console.log(chance);
-
+    
         if (chance > 950) {
             Win.big({ setResult });
         } else if (chance > 800) {
@@ -48,13 +64,14 @@ const Main = () => {
         } else {
             Win.lose({ setResult, result });
         }
-
-        setCrateValue(Math.floor(Math.random() * 6));
-
+    
+        handleUpdateCrate();
+    
         setTimeout(() => {
             setDisableAll(false);
-        }, 1000);
+        }, 1500);
     };
+    
 
     return (
         <div className="main">
@@ -68,7 +85,7 @@ const Main = () => {
                 Reel={Reel}
             />
             <Crate value={crateValue}></Crate>
-            <div>Wumpa Sum: {wumpaSum}</div>
+            <Ladder wumpas={wumpaSum} />
         </div>
     );
 }
